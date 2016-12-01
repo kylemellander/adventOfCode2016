@@ -1,6 +1,6 @@
 defmodule ReadInput do
   def from_day(day) do
-    {:ok, file} = File.read "/day#{day}/input.txt"
+    {:ok, file} = File.read "lib/day#{day}/input.txt"
 
     file
   end

@@ -98,7 +98,7 @@ defmodule Day1Test do
       multiplier: 1,
       x_axis: true,
       history: [{ 0, 0 }]
-    ], ["L", "1"]) == [ x: 0, y: 1, multiplier: 1, x_axis: false, history: [{ 0, 0 }, { 0, 1 }] ]
+    ], ["L", "1"]) == [ x: 0, y: 1, multiplier: 1, x_axis: false, history: [{ 0, 0 }] ]
   end
 
   test 'leg1 calculates the total path' do

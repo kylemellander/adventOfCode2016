@@ -4,17 +4,17 @@ defmodule Day1 do
     abs(x) + abs(y)
   end
 
-  def leg2 do
-    history = calculate_bunny_location[:history]
-    reverse_history = Enum.reverse(history)
-    length = length(history)
-    location = Enum.find(history, {0,0}, &(Enum.member?(List.delete(history, &1), &1)))
-    # IO.inspect location
-    # abs(location[:x]) + abs(location[:y])
-  end
+  # def leg2 do
+  #   history = calculate_bunny_location[:history]
+  #   reverse_history = Enum.reverse(history)
+  #   length = length(history)
+  #   location = Enum.find(history, {0,0}, &(Enum.member?(List.delete(history, &1), &1)))
+  #   # IO.inspect location
+  #   # abs(location[:x]) + abs(location[:y])
+  # end
 
   def calculate_bunny_location do
-    directions = parse_directions()
+    directions = parse_directions
     start_position = [
       x: 0,
       y: 0,
@@ -32,8 +32,8 @@ defmodule Day1 do
     [turn, move] = direction
     { move_integer, _ } = Integer.parse(move)
     turn(position, turn)
-    |> move(move_integer)
-    |> add_history()
+      |> move(move_integer)
+      # |> add_history
   end
 
   def turn([ x: x, y: y, multiplier: multiplier, x_axis: x_axis, history: history ], turn) do
@@ -58,15 +58,15 @@ defmodule Day1 do
     ]
   end
 
-  def add_history([ x: x, y: y, multiplier: multiplier, x_axis: x_axis, history: history ]) do
-    [
-      x: x,
-      y: y,
-      multiplier: multiplier,
-      x_axis: x_axis,
-      history: Enum.concat(history, [{ x, y }])
-    ]
-  end
+  # def add_history([ x: x, y: y, multiplier: multiplier, x_axis: x_axis, history: history ]) do
+  #   [
+  #     x: x,
+  #     y: y,
+  #     multiplier: multiplier,
+  #     x_axis: x_axis,
+  #     history: Enum.concat(history, [{ x, y }])
+  #   ]
+  # end
 
   def parse_directions do
     path = ReadInput.from_day(1)

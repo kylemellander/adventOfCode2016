@@ -1,7 +1,7 @@
 defmodule Day2 do
   def leg1 do
-    input = parse_input(ReadInput.from_day(2))
-    code_list(5, input)
+    parse_input(ReadInput.from_day(2))
+      |> code_list(5)
       |> Enum.join("")
   end
 
@@ -12,7 +12,7 @@ defmodule Day2 do
       |> Enum.join("")
   end
 
-  def code_list(start, input) do
+  def code_list(input, start) do
     { result, _ } = Enum.map_reduce(input, start, fn(directions, position) ->
       new_number = next_number(position, directions)
       { new_number, new_number }
@@ -54,16 +54,11 @@ defmodule Day2 do
 
   def move(position, direction) do
     case direction do
-      "U" ->
-        if position - 3 > 0, do: position - 3, else: position
-      "D" ->
-        if position + 3 < 10, do: position + 3, else: position
-      "R" ->
-        if rem(position, 3) == 0, do: position, else: position + 1
-      "L" ->
-        if rem(position - 1, 3) == 0, do: position, else: position - 1
-      _ ->
-        position
+      "U" -> if position - 3 > 0, do: position - 3, else: position
+      "D" -> if position + 3 < 10, do: position + 3, else: position
+      "R" -> if rem(position, 3) == 0, do: position, else: position + 1
+      "L" -> if rem(position - 1, 3) == 0, do: position, else: position - 1
+      _ -> position
     end
   end
 
@@ -71,10 +66,8 @@ defmodule Day2 do
     case direction do
       "U" ->
         cond do
-          Enum.member?([3, 13], position) ->
-            position - 2
-          5 < position && rem(position - 1, 4) != 0 ->
-            position - 4
+          Enum.member?([3, 13], position) -> position - 2
+          5 < position && rem(position - 1, 4) != 0 -> position - 4
           true -> position
         end
       "D" ->
